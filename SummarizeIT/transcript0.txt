@@ -1,0 +1,341 @@
+what is going on guys welcome back in
+this video today we're going to learn
+how to integrate and use chat GPT inside
+of python using the open AI package so
+let us get right into it
+[Music]
+all right so we're going to learn how to
+integrate and use chat gbt in Python
+today and this can be quite useful if
+you are aiming to build something more
+complex with the power of chat gbt so
+you want to use the chat completion you
+want to have this chat bot but you also
+maybe want to react to certain kinds of
+inputs or outputs you want to build an
+application around the power of chat gbt
+this is what this tutorial is for and
+the first thing we need to do is we need
+to install the open AI package which
+we're going to need to access the open
+AI API so we're going to open up the
+command line first and we're going to
+type pip install open AI now in addition
+to this package we're also going to need
+an API key so something that allows us
+to authenticate ourselves to the API so
+that we can send requests from our
+account and for this we're going to go
+to
+platform.openai.com I think I will have
+to move my camera here so that I can
+show you what I want to show you
+essentially if you have an account you
+just log in if you don't have an account
+you just create an account but if you
+have used chat gbt before you probably
+have an account and once you're here you
+just click on your profile in the upper
+right corner and then you click on view
+API keys and here if you have a secret
+key already you can just use it
+otherwise just create a new secret key
+copy it store it in a file and then you
+can load it into your script so that you
+can send requests to the API now one
+thing that's important to know is that
+the API requests cost money now it's
+very very cheap you can go to openai.com
+pricing and also before you click away
+because you don't want to spend money
+um I think that when you create a new
+account for openai you get some free
+credits uh in the beginning so if I
+click on chat here maybe
+uh what can I see that actually manage
+account or something like that
+there you go free trial usage I have 18
+dollars for whatever reason I didn't
+spend any money on the API yet but you
+get some free credits maybe not 18 maybe
+five dollars or something like that but
+you will be able to send some requests
+without having to spend money
+um but you can see the prices here so
+for chat gbt which is
+not gpd4 it's this one chat and then you
+have GPT 3.5 turbo you spend
+0.002 dollars per 1000 tokens uh meaning
+input and output
+um we also have the ability to use other
+language models but we're going to focus
+here on chat so we're going to use the
+chat completion which is also what you
+have here I also have a tutorial here a
+text-based tutorial
+um and as of right now this is the model
+that this is running on maybe quite soon
+you're going to also be able to use gpt4
+but today we're going to have to use GPT
+3.5 Turbo
+so uh let me just move back move my
+camera back up here
+what we're going to do now once we have
+the API key and once we have the open AI
+package installed is we're going to
+import open AI we're going to say API
+underscore key equals and you have to
+load the file that you're storing your
+key in so we're going to say open
+API key in my case because that's the
+file that I have here with my key inside
+of it
+I'm going to open it in reading mode and
+I'm going to read the key from that file
+now what we need to do now is we need to
+take that key and uh set it as the API
+key for open AI so we say open AI dot
+API underscore key equals API key
+and by doing that we now have our key
+our account associated with the package
+and when we send a request we send a
+request request through our profile so
+to get a very basic response to a simple
+prompt what we need to do is we need to
+say response
+equals
+and then we can just use openai dot chat
+completion
+and what we need to pass here is we need
+to pass two parameters the first one
+being the model that we want to use and
+we already talked about this the model
+is going to be GPT Dash 3.5 Dash Turbo
+and then we also need to have messages
+and messages doesn't have to be just one
+message it can be a message history and
+the message history has to have a
+certain format so what we do here is we
+say message equals and then we need to
+pass a list of dictionaries so I have
+this list here and inside of that list I
+have dictionaries and each dictionary is
+basically just a key value pair or
+contains two key value pairs namely the
+first one being the role so who said
+something and in this case we're going
+to be the user that says something and
+then we're going to have the second key
+value pair which is going to be the
+actual content
+and for example I could say
+um what is the difference
+between
+Celsius
+and Fahrenheit
+something like that and or maybe we
+could ask how do I convert from one to
+the other but that's now one message if
+I want to add a second message to the
+history
+I can say the same thing again roll and
+I think the roles are assistant
+user and system now user being us the
+the actual user who sends a request to
+chat GPT the assistant being chat GPT
+itself and the system is more like
+um the the system is more like context
+information like you are this and that
+so you can go actually to the tutorial
+here and you can see I think some
+examples
+um do we have some examples here
+system there you go so the system would
+say something like you are a helpful
+assistant that translates English to
+French and then the user would say
+translate the following sentence so
+system just gives the assistant uh
+information about their role
+um but for now we're just going to leave
+that one message here and in order to
+actually print the response we need to
+of course just print the response so
+there's nothing fancy about that when
+you call this
+um I don't know if that's a function or
+a Constructor but when you call this
+thing it actually already sends the
+request and you get a response now this
+might take some time depending on when
+you run this
+now we didn't get did I do something
+wrong
+oh I mean to say messages
+this is plural here
+uh we still get an empty
+we still get an empty response let me
+just check why that is oh okay sorry
+we need to say
+open AI dot chat completion dot create
+so this is just uh I think this is the
+class right yeah this is the class and
+this is the function that we need to use
+to actually create uh the request
+so now it should work
+and probably it will take some time
+there you go so what we get here as a
+response is
+um Celsius and Fahrenheit are two
+different units of temperature
+measurement the Celsius scale is used
+worldwide and is based on the metric
+system it measures temperature using
+degrees Celsius with the temperature and
+so on and so forth I don't want to read
+everything now but you can see here that
+the response is also structured here as
+a dictionary as a sort of Json object
+where you have the choices you have the
+message
+and you have some information about how
+many tokens uh were used so you can see
+here completion tokens prompt tokens
+total tokens so we now spend money for
+226 tokens remember 1 000 tokens cost
+0.002 dollars so 0.2 cents essentially
+[Music]
+um
+yeah so this is quite cheap
+we can now go ahead and build basically
+a chat system in Python by just running
+a loop and constantly adding to the
+message log how would we do that let's
+remove all of this here and let's say we
+have a chat log which is an empty list
+and we say while true
+user message equals input whatever the
+user wants to put in if the user message
+dot lower
+equals quit
+we're going to just break out of the
+loop
+and otherwise we're going to say chat
+log dot append
+and we're going to append a key value
+pair which is role user
+and content
+user message
+so this is going to be our message
+object or messages object essentially
+and what we do now again is we say
+response equals
+open AI
+dot chatcompletion dot create
+we see again the model is going to be
+GPT 3.5 Turbo
+and the messages
+are going to be
+the Chat lock
+um and then basically if you want to get
+the actual response if you just want to
+get the message instead of the whole
+Json object what we do is we say
+assistant
+response equals response
+choices
+zero
+message and then we want to get the
+actual content
+from the message
+now what's important is of course since
+we're talking to chat GPT and chat GPT
+is able to recognize context we need to
+also add the assistant response to the
+chat log otherwise we just have our own
+messages we don't have the responses of
+chat GPT so what we want to do first we
+want to print of course chat GPT says
+something it says assistant response and
+we need to strip it from New Line
+characters otherwise it may look funny
+then we're also going to strip it from
+White spaces so we're going to just get
+a text and then we're going to say
+Chat lock
+dot append and we want to append another
+key value pair here or another message
+with two key value pairs the role being
+the assistant and the content being the
+assistant response
+um and of course here we need to also
+say script
+the new line character and
+the white spaces
+there you go so that should already be
+it
+and I think I need to just enter a
+message right so if I say here uh what
+could I ask
+um
+what is the difference
+between
+and interpret it
+and a compiled language
+and then we should get a response with
+an explanation then I can ask which one
+of the two is python for example so I
+don't have to specify again that I'm
+looking for the difference between
+interpreted and compiled languages I can
+just say okay and just give me the
+information what of the two is python so
+here I got now interpreted language is a
+programming language this code is
+interpreted into machine code on the Fly
+and stuff like that so let's go ahead
+and say
+great which one is python then question
+mark
+and then it should be able to recognize
+the context because if I just ask
+without context what python is it will
+tell me basically python is a
+programming language it's used for I
+don't know what and in this case it
+tells me python is an interpreted
+language because it recognizes the
+context so that's basic chat GPT and the
+good thing about this API now is that
+you can use it to automate things now
+you can also just use chat GPT in the
+web you don't need an application like
+this but you can take this now and you
+can build functionality around it you
+can say for example if certain tokens
+um occur in the response or if certain
+uh stuff like that right so if you say
+user message lower equals quit you have
+the functionality to quit uh the program
+you can also add other commands you can
+also say okay if the response is
+containing certain words I'm going to
+censor it I'm going to call cause an
+action because of it I'm going to do
+something because of it
+um and this is how you can use chat GPT
+in Python to build more complex chat
+Bots or more complex chattings systems
+all right so that's it for today's video
+I hope you enjoyed it and hope you
+learned something if so let me know by
+hitting the like button and leaving a
+comment in the comment section down
+below and of course don't forget to
+subscribe to this Channel and hit the
+notification Bell to not miss a single
+future video for free other than that
+thank you much for watching see you in
+the next video and bye
+thank you
+[Music]
